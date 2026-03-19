@@ -938,7 +938,7 @@ async def broadcast(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_text(f"❌ <b>Error:</b> {e}", parse_mode="HTML")
         
 # ===== MAIN FUNCTION =====
-def main():
+async def main():
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     if not token:
         raise RuntimeError("Missing TELEGRAM_TOKEN env var.")
@@ -994,9 +994,11 @@ def main():
         group=1
     )
 
-    app.run_polling(allowed_updates=Update.ALL_TYPES)
+    await app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
 if __name__ == "__main__":
     keep_alive()
-    main()
+    
+    import asyncio
+    asyncio.run(main())
