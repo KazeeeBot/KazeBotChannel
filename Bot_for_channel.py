@@ -25,8 +25,8 @@ MT_FILE_ID = "BQACAgUAAxkBAAIEDGmfKRCao7aJoq19aqoqjsWKUYs_AAJZHQACIAH5VBOyW_iQUk
 ANDLUA_FILE_ID = "BQACAgUAAxkBAAIECGmfKDEgnHs85TrdnBu9zRYoaXpgAAJSHQACIAH5VMFBC36WUb26OgQ"
 DUAL_FILE_ID = "BQACAgUAAxkBAAIECmmfKLtu5QOKjzG1zScNZCOG2e5uAAJYHQACIAH5VMkZ7jvEeEguOgQ"
 TERMUX_FILE_ID = "BQACAgUAAxkBAAIEDmmfKUMpTKGZm4jMgbSgKIp72k-hAAJaHQACIAH5VK7Esi8AAZ7fojoE"
-SCRIPT_FILE_ID = "BQACAgUAAyEFAATC_WD3AAKpXGm5UJHWb4Na3q3TRUBDLi4v7GinAAKlHwAC_hzIVTMQgt1ocAUiOgQ"
-INJECTOR_FILE_ID = "BQACAgUAAxkBAAIFv2m1OqJ1K-VcXv7X9csBOSiXoJ_hAAJaHAAC_LmoVVUY057NHLqgOgQ"
+SCRIPT_FILE_ID = "BQACAgUAAxkBAAIGTGm8BrrKRRU_N0pM1GoedP9MQqKIAAJ7HAACU4PgVUgGYsw79k1POgQ"
+INJECTOR_FILE_ID = "BQACAgUAAxkBAAIGSmm8Bp_HymJGx8PwbS1i1IK91p9YAAKnOgACMQvgVZEocU1UTB8tOgQ"
 AMY_FILE_ID = "BQACAgUAAyEFAATC_WD3AAKnOmm2VopEy0Vc_BOdmto5-1N53P-ZAAJMGgACPL-5VRbdmmqlskYeOgQ"
 
 BOT_ACTIVE = True  # Default na naka-ON ang bot
@@ -398,7 +398,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await msg.reply_document(
                 document=SCRIPT_FILE_ID,
                 caption=(
-                    "🔥 **CODM Premium Script**\n\n"
+                    "🔥 **Codm Premium Script – New Update v4.0**\n\n"
                     "Exclusive script developed by **@KAZEHAYAMODZ**.\n"
                     "Optimized for better performance and stability.\n\n"
                     "✔ Make sure you are using the latest injector version."
@@ -415,7 +415,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await msg.reply_document(
                 document=INJECTOR_FILE_ID,
                 caption=(
-                    "🚀 **CODM Injector – New Update v5.0**\n\n"
+                    "🚀 **Codm Injector – New Update v6.0**\n\n"
                     "All core features are included in this version:\n\n"
                     "✔ Updated Injector System\n"
                     "✔ Key Generator Access\n"
