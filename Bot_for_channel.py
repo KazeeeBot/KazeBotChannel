@@ -419,7 +419,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "All core features are included in this version:\n\n"
                     "✔ Updated Injector System\n"
                     "✔ Key Generator Access\n"
-                    "✔ Secure Device Lock System\n\n"
+                    "✔ Secure Device Lock System\n"
                     "✔ Best Floating Icon\n"
                     "📌 Generate your key from the website before using the injector.\n\n"
                     "Enjoy the latest version! 🔥"
