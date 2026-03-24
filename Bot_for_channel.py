@@ -26,7 +26,7 @@ ANDLUA_FILE_ID = "BQACAgUAAxkBAAIECGmfKDEgnHs85TrdnBu9zRYoaXpgAAJSHQACIAH5VMFBC3
 DUAL_FILE_ID = "BQACAgUAAxkBAAIECmmfKLtu5QOKjzG1zScNZCOG2e5uAAJYHQACIAH5VMkZ7jvEeEguOgQ"
 TERMUX_FILE_ID = "BQACAgUAAxkBAAIEDmmfKUMpTKGZm4jMgbSgKIp72k-hAAJaHQACIAH5VK7Esi8AAZ7fojoE"
 SCRIPT_FILE_ID = "BQACAgUAAxkBAAIGTGm8BrrKRRU_N0pM1GoedP9MQqKIAAJ7HAACU4PgVUgGYsw79k1POgQ"
-INJECTOR_FILE_ID = "BQACAgUAAxkBAAIGSmm8Bp_HymJGx8PwbS1i1IK91p9YAAKnOgACMQvgVZEocU1UTB8tOgQ"
+INJECTOR_FILE_ID = "BQACAgUAAxkBAAIGtWnB6P-dNHleN5fvoVN8lYfmw1o8AAIKIgACalAQVrzvHV2BYXXaOgQ"
 AMY_FILE_ID = "BQACAgUAAyEFAATC_WD3AAKnOmm2VopEy0Vc_BOdmto5-1N53P-ZAAJMGgACPL-5VRbdmmqlskYeOgQ"
 
 BOT_ACTIVE = True  # Default na naka-ON ang bot
@@ -415,13 +415,13 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await msg.reply_document(
                 document=INJECTOR_FILE_ID,
                 caption=(
-                    "🚀 **Codm Injector – New Update v6.0**\n\n"
+                    "🚀 **Codm Injector – New Update v6.5**\n\n"
                     "All core features are included in this version:\n\n"
                     "✔ Updated Injector System\n"
                     "✔ Key Generator Access\n"
                     "✔ Secure Device Lock System\n\n"
-                    "📌 Generate your key from the website before using the injector.\n"
-                    "📌 Make sure your injector is updated to avoid errors.\n\n"
+                    "✔ Best Floating Icon\n"
+                    "📌 Generate your key from the website before using the injector.\n\n"
                     "Enjoy the latest version! 🔥"
                 ),
                 parse_mode="Markdown"
