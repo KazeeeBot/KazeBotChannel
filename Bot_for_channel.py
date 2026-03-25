@@ -28,6 +28,7 @@ TERMUX_FILE_ID = "BQACAgUAAxkBAAIEDmmfKUMpTKGZm4jMgbSgKIp72k-hAAJaHQACIAH5VK7Esi
 SCRIPT_FILE_ID = "BQACAgUAAxkBAAIGTGm8BrrKRRU_N0pM1GoedP9MQqKIAAJ7HAACU4PgVUgGYsw79k1POgQ"
 INJECTOR_FILE_ID = "BQACAgUAAxkBAAIGtWnB6P-dNHleN5fvoVN8lYfmw1o8AAIKIgACalAQVrzvHV2BYXXaOgQ"
 AMY_FILE_ID = "BQACAgUAAyEFAATC_WD3AAKnOmm2VopEy0Vc_BOdmto5-1N53P-ZAAJMGgACPL-5VRbdmmqlskYeOgQ"
+WELCOME_VIDEO_ID = "BQACAgUAAxkBAAIGyGnD4JGDgUietJ6oUKeb2l-iEJthAAKoGwACrK8gVuVzCxCE_fqyOgQ"
 
 BOT_ACTIVE = True  # Default na naka-ON ang bot
 
@@ -138,24 +139,40 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(start_message)
     
+# Ilagay mo ito sa itaas ng script mo para madaling palitan sa susunod
 async def welcome(update: Update, context: ContextTypes.DEFAULT_TYPE):
     chat = update.effective_chat
     msg = update.message
+    
     if not msg or not msg.new_chat_members:
         return
 
     for m in msg.new_chat_members:
+        # Kunin ang name at i-escape ang special characters kung kailangan
         full = (m.full_name or m.first_name or "Player").strip()
 
         welcome_message = (
-            f"👋 Hello {full}, welcome to our DC!\n\n"
+            f"👋 *Hello {full}, welcome to our DC!*\n\n"
             "📌 Please check the pinned rules to avoid banned.\n"
             "💬 Stay active and follow announcements for updates.\n\n"
-            "👉 If you haven't joined our main channel yet, join here:\n"
-            "https://t.me/+wkXVYyqiRYplZjk1"
+            "👉 *If you haven't joined our main channel yet, join here:*\n"
+            "https://t.me/KazeMainChannel"
         )
 
-        await chat.send_message(welcome_message, disable_web_page_preview=True)
+        try:
+            # Gagamit tayo ng send_video sa halip na send_message
+            await context.bot.send_video(
+                chat_id=chat.id,
+                video=WELCOME_VIDEO_ID,
+                caption=welcome_message,
+                parse_mode="Markdown", # Para sa bold at links
+                disable_web_page_preview=False # I-set sa False para lumabas yung "View Channel" button
+            )
+        except Exception as e:
+            # Fallback message kung sakaling mag-error ang video
+            print(f"Error sending video: {e}")
+            await chat.send_message(welcome_message)
+            
 # ===== /HELP COMMAND =====
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     help_text = (
