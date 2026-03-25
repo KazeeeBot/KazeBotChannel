@@ -964,15 +964,22 @@ def main():
     if not token:
         raise RuntimeError("Missing TELEGRAM_TOKEN env var.")
 
+    # In-update natin ang builder para masiguradong binabasa ang lahat ng updates
     app = Application.builder().token(token).build()
 
-    app.add_handler(MessageHandler(filters.Document.ALL, get_file_id))
+    # 1. ===== PRIORITY HANDLERS (Group 0) =====
+    # Inilipat natin ang welcome dito para ito ang unang ma-detect
+    app.add_handler(
+        MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome),
+        group=0
+    )
 
-    # ===== COMMANDS =====
+    # 2. ===== COMMANDS =====
     app.add_handler(CommandHandler("start", start))
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CommandHandler("report", report_user))
     app.add_handler(CommandHandler("filters", filters_command))
+    app.add_handler(CommandHandler("broadcast", broadcast))
 
     # 🌹 ROSE INLINE CONTROL
     app.add_handler(CommandHandler("rose", rose))
@@ -981,10 +988,8 @@ def main():
     # 🔑 KEY COMMANDS
     app.add_handler(CommandHandler("getfreekey", Getfreekey))
     app.add_handler(CommandHandler("key", Getfreekey))
+    # Para sa mga nagta-type lang ng "Getfreekey" na walang slash
     app.add_handler(MessageHandler(filters.Regex(r'(?i)^Getfreekey$'), Getfreekey))
-
-    # 📢 BROADCAST
-    app.add_handler(CommandHandler("broadcast", broadcast))
 
     # ===== GAME COMMANDS =====
     app.add_handler(CommandHandler("roll", roll))
@@ -995,26 +1000,27 @@ def main():
     app.add_handler(CommandHandler("switchkuri", switch_kuri))
     app.add_handler(CommandHandler("switchkaze", switch_kaze))
 
-    # ===== WELCOME =====
-    app.add_handler(
-        MessageHandler(filters.StatusUpdate.NEW_CHAT_MEMBERS, welcome)
-    )
-
-    # ===== 🚨 MODERATION FIRST =====
+    # 3. ===== MODERATION (Group 1) =====
+    # Ginawa nating Group 1 para hindi niya ma-moderate yung welcome message
     app.add_handler(
         MessageHandler(
             (filters.TEXT | filters.CAPTION | filters.FORWARDED) & ~filters.COMMAND,
             moderate
         ),
-        group=0
-    )
-
-    # ===== MAIN TEXT HANDLER =====
-    app.add_handler(
-        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text),
         group=1
     )
 
+    # 4. ===== AUTO-REPLY TOOLS (Group 2) =====
+    # Para sa mga keywords gaya ng "GameGuardian", "MT Manager", etc.
+    app.add_handler(
+        MessageHandler(filters.TEXT & ~filters.COMMAND, handle_text),
+        group=2
+    )
+
+    # 5. ===== UTILS =====
+    app.add_handler(MessageHandler(filters.Document.ALL, get_file_id))
+
+    print("--- Rose Bot is Online ---")
     app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 if __name__ == "__main__":
