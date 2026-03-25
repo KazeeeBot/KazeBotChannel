@@ -138,22 +138,20 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(start_message)
     
-# Siguraduhin na tama ang File ID na nakuha mo sa Rose Bot
-WELCOME_VIDEO_ID = "BQACAgUAAxkBAAIGyGnD4JGDgUietJ6oUKeb2l-iEJthAAKoGwACrK8gVuVzCxCE_fqyOgQ"
-
 async def welcome(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    chat = update.effective_chat
     msg = update.message
-    
-    # Check kung may bagong member talaga
     if not msg or not msg.new_chat_members:
         return
 
-    for m in msg.new_chat_members:
-        # Kunin ang pangalan ng member
-        full = (m.full_name or m.first_name or "Player").strip()
+    chat_id = update.effective_chat.id
 
-        # Eto yung text na lalabas sa ilalim ng video
+    # PALITAN MO ITO: Gamitin ang link ng video post mula sa channel mo
+    VIDEO_CHANNEL_LINK = "https://t.me/KazeFannyVid/3" 
+
+    for m in msg.new_chat_members:
+        if m.id == context.bot.id: continue
+        
+        full = m.first_name
         welcome_caption = (
             f"👋 *Hello {full}, welcome to our DC!*\n\n"
             "📌 Please check the pinned rules to avoid banned.\n"
@@ -163,20 +161,17 @@ async def welcome(update: Update, context: ContextTypes.DEFAULT_TYPE):
         )
 
         try:
-            # ISANG SEND NA LANG: Video na may Caption
+            # I-send ang video gamit ang direct telegram link
             await context.bot.send_video(
-                chat_id=chat.id,
-                video=WELCOME_VIDEO_ID,
+                chat_id=chat_id,
+                video=VIDEO_CHANNEL_LINK,
                 caption=welcome_caption,
-                parse_mode="Markdown",
-                disable_web_page_preview=False # Para lumabas ang channel preview
+                parse_mode="Markdown"
             )
         except Exception as e:
-            # Kung mag-fail (halimbawa: deleted na yung video sa server)
-            print(f"Error: {e}")
-            # Fallback sa text lang para hindi mapahiya ang bot
+            print(f"Error sending from channel link: {e}")
+            # Fallback message
             await chat.send_message(welcome_caption, parse_mode="Markdown")
-            
 # ===== /HELP COMMAND =====
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     help_text = (
