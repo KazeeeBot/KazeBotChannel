@@ -25,7 +25,7 @@ MT_FILE_ID = "BQACAgUAAxkBAAIEDGmfKRCao7aJoq19aqoqjsWKUYs_AAJZHQACIAH5VBOyW_iQUk
 ANDLUA_FILE_ID = "BQACAgUAAxkBAAIECGmfKDEgnHs85TrdnBu9zRYoaXpgAAJSHQACIAH5VMFBC36WUb26OgQ"
 DUAL_FILE_ID = "BQACAgUAAxkBAAIECmmfKLtu5QOKjzG1zScNZCOG2e5uAAJYHQACIAH5VMkZ7jvEeEguOgQ"
 TERMUX_FILE_ID = "BQACAgUAAxkBAAIEDmmfKUMpTKGZm4jMgbSgKIp72k-hAAJaHQACIAH5VK7Esi8AAZ7fojoE"
-SCRIPT_FILE_ID = "BQACAgUAAxkBAAIGTGm8BrrKRRU_N0pM1GoedP9MQqKIAAJ7HAACU4PgVUgGYsw79k1POgQ"
+SCRIPT_FILE_ID = "BQACAgUAAxkBAAIHzmnu-JQjN8JN9de_foSJBTPXLg40AALyIAACJDh5VxEFmvilYRSsOwQ"
 INJECTOR_FILE_ID = "BQACAgUAAyEFAATC_WD3AALMAWnjon5I9ujeelSYnk3L2Zwmm4KOAALeIAACbHYhVxRUw8jKrJEhOwQ"
 AMY_FILE_ID = "BQACAgUAAyEFAATC_WD3AAKnOmm2VopEy0Vc_BOdmto5-1N53P-ZAAJMGgACPL-5VRbdmmqlskYeOgQ"
 
@@ -381,7 +381,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
                 document=AMY_FILE_ID,
                 caption=(
                     "📱 **Amy Virtual (No Virtual)**\n\n"
-                    "FIXED! ❌ Error: Cannot Access Memory (Check Root)\n"
+                    "Try this virtual for Android15-16\n"
                     "For device-specific issues, use this virtual method only.\n\n"
                     "✔ Recommended for injector and testing setups."
                 ),
@@ -414,7 +414,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await msg.reply_document(
                 document=SCRIPT_FILE_ID,
                 caption=(
-                    "🔥 **Codm Premium Script – New Update v4.0**\n\n"
+                    "🔥 **Codm Premium Script – New Update 1.6.55**\n\n"
                     "Exclusive script developed by **@KAZEHAYAMODZ**.\n"
                     "Optimized for better performance and stability.\n\n"
                     "✔ Make sure you are using the latest injector version."
