@@ -858,52 +858,96 @@ from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ContextTypes
 
 async def Getfreekey(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    # 1. Ang iyong RAW link mula sa Pastebin
+    import requests
+    from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+
+    # RAW Pastebin URL
     PASTEBIN_URL = "https://pastebin.com/raw/MQDyuA8W"
 
     try:
-        response = requests.get(PASTEBIN_URL, timeout=10)
-        
-        if response.status_code == 200:
-            all_lines = response.text.splitlines()
-            
-            if len(all_lines) < 2:
-                await update.message.reply_text("❌ <b>Error:</b> Please feedback owner")
-                return
+        # Request sa Pastebin
+        response = requests.get(PASTEBIN_URL, timeout=15)
 
-            # Line 1: Ito lang ang kukunin natin na link sa Pastebin
-            dynamic_key_url = all_lines[0].strip()
-            
-            # Line 2 hanggang dulo: Ito ang mismong Message
-            final_message = "\n".join(all_lines[1:])
-            
-            # --- [ BUTTONS LOGIC ] ---
-            keyboard = [
-                [
-                    # Eto yung nagbabago base sa Pastebin
-                    InlineKeyboardButton("🔑 GET KEY HERE", url=dynamic_key_url)
-                ],
-                [
-                    # Eto yung permanenteng Group Link mo
-                    InlineKeyboardButton("🛡️ JOIN CHANNEL", url="https://t.me/KazeMainChannel"),
-                    # Eto yung permanenteng Feedback Link mo
-                    InlineKeyboardButton("💬 FEEDBACK", url="https://t.me/KAZEHAYAMODZ")
-                ]
-            ]
-            reply_markup = InlineKeyboardMarkup(keyboard)
-            
+        print(f"STATUS CODE: {response.status_code}")
+        print(f"RAW RESPONSE:\n{response.text}")
+
+        # Check kung successful request
+        if response.status_code != 200:
             await update.message.reply_text(
-                text=final_message, 
-                parse_mode="HTML", 
-                reply_markup=reply_markup,
-                disable_web_page_preview=True
+                f"❌ <b>Server connection failed.</b>\nStatus Code: <code>{response.status_code}</code>",
+                parse_mode="HTML"
             )
-        else:
-            await update.message.reply_text("❌ <b>Error:</b> Server connection failed.", parse_mode="HTML")
+            return
+
+        # Split bawat line
+        all_lines = response.text.splitlines()
+
+        # Need at least 2 lines
+        if len(all_lines) < 2:
+            await update.message.reply_text(
+                "❌ <b>Error:</b> Paste content invalid.",
+                parse_mode="HTML"
+            )
+            return
+
+        # First line = dynamic URL
+        dynamic_key_url = all_lines[0].strip()
+
+        # Check valid URL
+        if not dynamic_key_url.startswith("http"):
+            await update.message.reply_text(
+                "❌ <b>Error:</b> Invalid URL detected in Pastebin.",
+                parse_mode="HTML"
+            )
+            return
+
+        # Remaining lines = message
+        final_message = "\n".join(all_lines[1:]).strip()
+
+        # Fallback message
+        if not final_message:
+            final_message = "✅ Key system loaded successfully."
+
+        # Buttons
+        keyboard = [
+            [
+                InlineKeyboardButton(
+                    "🔑 GET KEY HERE",
+                    url=dynamic_key_url
+                )
+            ],
+            [
+                InlineKeyboardButton(
+                    "🛡️ JOIN CHANNEL",
+                    url="https://t.me/KazeMainChannel"
+                ),
+                InlineKeyboardButton(
+                    "💬 FEEDBACK",
+                    url="https://t.me/KAZEHAYAMODZ"
+                )
+            ]
+        ]
+
+        reply_markup = InlineKeyboardMarkup(keyboard)
+
+        # Send message
+        await update.message.reply_text(
+            text=final_message,
+            reply_markup=reply_markup,
+            disable_web_page_preview=True
+        )
 
     except Exception as e:
-        print(f"Error: {e}")
-        await update.message.reply_text("🚫 <b>Server Offline:</b> Try again later.", parse_mode="HTML")
+        import traceback
+
+        traceback.print_exc()
+
+        error_text = str(e)
+
+        await update.message.reply_text(
+            f"🚫 <b>Error Detected:</b>\n<code>{error_text}</code>",
+            parse_mode="HTML"
+        )
         
 async def get_file_id(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.message.document:
