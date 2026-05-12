@@ -859,7 +859,7 @@ from telegram.ext import ContextTypes
 
 async def Getfreekey(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # 1. Ang iyong RAW link mula sa Pastebin
-    PASTEBIN_URL = "https://pastebin.com/raw/TCfpBaeP"
+    PASTEBIN_URL = "https://pastebin.com/raw/MQDyuA8W"
 
     try:
         response = requests.get(PASTEBIN_URL, timeout=10)
