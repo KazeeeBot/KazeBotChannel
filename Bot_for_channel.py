@@ -446,7 +446,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except Exception as e:
             print(f"Error Injector: {e}")
        #KAZE SKIN
-        if re.search(r"\bskin\s?(script|inj)\b", text_lower):
+    if re.search(r"\bskin\s?(script|inj)\b", text_lower):
         try:
             await msg.reply_document(
                 document=SKIN_FILE_ID,
