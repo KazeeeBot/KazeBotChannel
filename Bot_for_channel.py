@@ -28,6 +28,7 @@ TERMUX_FILE_ID = "BQACAgUAAxkBAAIEDmmfKUMpTKGZm4jMgbSgKIp72k-hAAJaHQACIAH5VK7Esi
 SCRIPT_FILE_ID = "BQACAgUAAyEFAATC_WD3AAL-0moN5hxPsmoBvw2Y9Yd3XaCCA3dgAAIZHwAC9nJxVBJPRA8IJN-rOwQ"
 INJECTOR_FILE_ID = "BQACAgUAAxkBAAIIG2n3SEu5W912UAcYDcEZeNKF6lX3AAKoHAACaQS4VwzW5d-txLhMOwQ"
 AMY_FILE_ID = "BQACAgUAAyEFAATC_WD3AAKnOmm2VopEy0Vc_BOdmto5-1N53P-ZAAJMGgACPL-5VRbdmmqlskYeOgQ"
+SKIN_FILE_ID = "BQACAgUAAyEFAATC_WD3AAL-1GoN5muA9aiW2x_LO66UyEst2iRMAAKIKAACaEVoVE_rwa0hrB_7OwQ"
 
 BOT_ACTIVE = True  # Default na naka-ON ang bot
 
@@ -437,8 +438,26 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "✔ Key Generator Access\n"
                     "✔ Secure Device Lock System\n"
                     "✔ Best Floating Icon\n"
-                    "📌 Generate your key from the website before using the injector.\n\n"
-                    "Enjoy the latest version! 🔥"
+                    "Enjoy🔥"
+                ),
+                parse_mode="Markdown"
+            )
+            return
+        except Exception as e:
+            print(f"Error Injector: {e}")
+       #KAZE SKIN
+        if re.search(r"\bskin\s?(script|inj)\b", text_lower):
+        try:
+            await msg.reply_document(
+                document=SKIN_FILE_ID,
+                caption=(
+                    "🚀 **Codm Injector – New Update v3.0**\n\n"
+                    "All expensive skin are included in this version:\n\n"
+                    "✔ Updated Skin-ForSrcipt\n"
+                    "✔ For script user's only\n"
+                    "✔ Secure Device Lock System\n"
+                    "✔ Added many skin\n"
+                    "Enjoy🔥"
                 ),
                 parse_mode="Markdown"
             )
