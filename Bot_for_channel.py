@@ -432,7 +432,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await msg.reply_document(
                 document=INJECTOR_FILE_ID,
                 caption=(
-                    "🚀 **Codm Injector – New Update v3.0**\n\n"
+                    "🚀 **Codm Injector – New Update v1.0**\n\n"
                     "All core features are included in this version:\n\n"
                     "✔ Updated Injector System\n"
                     "✔ Key Generator Access\n"
@@ -445,6 +445,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             return
         except Exception as e:
             print(f"Error Injector: {e}")
+            
        #KAZE SKIN
     if re.search(r"\bskin\s?(script|inj)\b", text_lower):
         try:
@@ -776,7 +777,8 @@ async def filters_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         " - `amy virtual`\n"
         " - `codm script`\n"
         " - `getfreekey`\n"
-        " - `codm injector`\n\n"
+        " - `codm injector`\n"
+        " - `skin script`\n\n"
         "💡 *Tip: Tap the name to copy, then paste and send to get the file!*"
     )
     
