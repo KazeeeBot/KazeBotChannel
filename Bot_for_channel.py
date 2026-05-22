@@ -432,13 +432,13 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await msg.reply_document(
                 document=INJECTOR_FILE_ID,
                 caption=(
-                    "🚀 **Codm Injector – New Update v1.0**\n\n"
+                    "🚀 **Codm Injector – New Update v4.0**\n\n"
                     "All core features are included in this version:\n\n"
                     "✔ Updated Injector System\n"
                     "✔ Key Generator Access\n"
                     "✔ Secure Device Lock System\n"
                     "✔ Best Floating Icon\n"
-                    "Enjoy🔥"
+                    "Enjoy New Update🔥"
                 ),
                 parse_mode="Markdown"
             )
@@ -452,13 +452,13 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await msg.reply_document(
                 document=SKIN_FILE_ID,
                 caption=(
-                    "🚀 **Codm Injector – New Update v4.0**\n\n"
+                    "🌟 **Codm Injector – New Update v1.0**\n\n"
                     "All expensive skin are included in this version:\n\n"
                     "✔ Updated Skin-ForSrcipt\n"
                     "✔ For script user's only\n"
                     "✔ Secure Device Lock System\n"
                     "✔ Added many skin\n"
-                    "Enjoy New Update🔥"
+                    "Enjoy🔥"
                 ),
                 parse_mode="Markdown"
             )
