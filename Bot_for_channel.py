@@ -26,7 +26,7 @@ ANDLUA_FILE_ID = "BQACAgUAAxkBAAIECGmfKDEgnHs85TrdnBu9zRYoaXpgAAJSHQACIAH5VMFBC3
 DUAL_FILE_ID = "BQACAgUAAxkBAAIECmmfKLtu5QOKjzG1zScNZCOG2e5uAAJYHQACIAH5VMkZ7jvEeEguOgQ"
 TERMUX_FILE_ID = "BQACAgUAAxkBAAIEDmmfKUMpTKGZm4jMgbSgKIp72k-hAAJaHQACIAH5VK7Esi8AAZ7fojoE"
 SCRIPT_FILE_ID = "BQACAgUAAyEFAATC_WD3AAL-0moN5hxPsmoBvw2Y9Yd3XaCCA3dgAAIZHwAC9nJxVBJPRA8IJN-rOwQ"
-INJECTOR_FILE_ID = "BQACAgUAAxkBAAIIG2n3SEu5W912UAcYDcEZeNKF6lX3AAKoHAACaQS4VwzW5d-txLhMOwQ"
+INJECTOR_FILE_ID = "BQACAgUAAxkBAAIIumoQmsqkhNKLwjg_TFls8w53dTKxAAIHIQACyPqIVJvNSxq8rYITOwQ"
 AMY_FILE_ID = "BQACAgUAAyEFAATC_WD3AAKnOmm2VopEy0Vc_BOdmto5-1N53P-ZAAJMGgACPL-5VRbdmmqlskYeOgQ"
 SKIN_FILE_ID = "BQACAgUAAyEFAATC_WD3AAL-1GoN5muA9aiW2x_LO66UyEst2iRMAAKIKAACaEVoVE_rwa0hrB_7OwQ"
 
@@ -452,13 +452,13 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await msg.reply_document(
                 document=SKIN_FILE_ID,
                 caption=(
-                    "🚀 **Codm Injector – New Update v3.0**\n\n"
+                    "🚀 **Codm Injector – New Update v4.0**\n\n"
                     "All expensive skin are included in this version:\n\n"
                     "✔ Updated Skin-ForSrcipt\n"
                     "✔ For script user's only\n"
                     "✔ Secure Device Lock System\n"
                     "✔ Added many skin\n"
-                    "Enjoy🔥"
+                    "Enjoy New Update🔥"
                 ),
                 parse_mode="Markdown"
             )
