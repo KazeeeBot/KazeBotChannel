@@ -26,7 +26,7 @@ ANDLUA_FILE_ID = "BQACAgUAAxkBAAIECGmfKDEgnHs85TrdnBu9zRYoaXpgAAJSHQACIAH5VMFBC3
 DUAL_FILE_ID = "BQACAgUAAxkBAAIECmmfKLtu5QOKjzG1zScNZCOG2e5uAAJYHQACIAH5VMkZ7jvEeEguOgQ"
 TERMUX_FILE_ID = "BQACAgUAAxkBAAIEDmmfKUMpTKGZm4jMgbSgKIp72k-hAAJaHQACIAH5VK7Esi8AAZ7fojoE"
 SCRIPT_FILE_ID = "BQACAgUAAyEFAATC_WD3AAL-0moN5hxPsmoBvw2Y9Yd3XaCCA3dgAAIZHwAC9nJxVBJPRA8IJN-rOwQ"
-INJECTOR_FILE_ID = "BQACAgUAAxkBAAIIumoQmsqkhNKLwjg_TFls8w53dTKxAAIHIQACyPqIVJvNSxq8rYITOwQ"
+INJECTOR_FILE_ID = "BQACAgUAAxkBAAIJnWo6B0lY7_DDz3i7twgFNQ4Q_p-wAAJkHAACgCvRVcdcbdnJGozZPAQ"
 AMY_FILE_ID = "BQACAgUAAyEFAATC_WD3AAKnOmm2VopEy0Vc_BOdmto5-1N53P-ZAAJMGgACPL-5VRbdmmqlskYeOgQ"
 SKIN_FILE_ID = "BQACAgUAAyEFAATC_WD3AAL-1GoN5muA9aiW2x_LO66UyEst2iRMAAKIKAACaEVoVE_rwa0hrB_7OwQ"
 
@@ -432,7 +432,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await msg.reply_document(
                 document=INJECTOR_FILE_ID,
                 caption=(
-                    "🚀 **Codm Injector – New Update v4.0**\n\n"
+                    "🚀 **Codm Injector – New Update v7.0**\n\n"
                     "All core features are included in this version:\n\n"
                     "✔ Updated Injector System\n"
                     "✔ Key Generator Access\n"
