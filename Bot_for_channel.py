@@ -139,18 +139,22 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     await update.message.reply_text(start_message)
     
+from telegram import Update
+from telegram.ext import ContextTypes, MessageHandler, filters
+
 async def welcome(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = update.message
+    # Siguraduhin na may message at may bagong member talaga
     if not msg or not msg.new_chat_members:
         return
 
     chat_id = update.effective_chat.id
-
-    # PALITAN MO ITO: Gamitin ang link ng video post mula sa channel mo
     VIDEO_CHANNEL_LINK = "https://t.me/KazeFannyVid/3" 
 
     for m in msg.new_chat_members:
-        if m.id == context.bot.id: continue
+        # Huwag i-welcome ang sarili mong bot
+        if m.id == context.bot.id: 
+            continue
         
         full = m.first_name
         welcome_caption = (
@@ -171,8 +175,12 @@ async def welcome(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
         except Exception as e:
             print(f"Error sending from channel link: {e}")
-            # Fallback message
-            await chat.send_message(welcome_caption, parse_mode="Markdown")
+            # FIXED: Inayos ang fallback gamit ang context.bot.send_message
+            await context.bot.send_message(
+                chat_id=chat_id, 
+                text=welcome_caption, 
+                parse_mode="Markdown"
+        )
 # ===== /HELP COMMAND =====
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     help_text = (
