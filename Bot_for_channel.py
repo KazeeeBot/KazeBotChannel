@@ -26,10 +26,43 @@ ANDLUA_FILE_ID = "BQACAgUAAxkBAAIECGmfKDEgnHs85TrdnBu9zRYoaXpgAAJSHQACIAH5VMFBC3
 DUAL_FILE_ID = "BQACAgUAAxkBAAIECmmfKLtu5QOKjzG1zScNZCOG2e5uAAJYHQACIAH5VMkZ7jvEeEguOgQ"
 TERMUX_FILE_ID = "BQACAgUAAxkBAAIEDmmfKUMpTKGZm4jMgbSgKIp72k-hAAJaHQACIAH5VK7Esi8AAZ7fojoE"
 SCRIPT_FILE_ID = "BQACAgUAAxkBAAIJumo_mJwOC8nVe7dl-jbN_utolrIWAALeIAACQ-8AAVZlUuEH-2eAGDwE"
-INJECTOR_FILE_ID = "BQACAgUAAxkBAAIJ4WpODQtqir3kOeqM24-pFbf9hrBMAAJ7HgACS2RxVjQKdD0IAhZDPAQ"
 AMY_FILE_ID = "BQACAgUAAyEFAATC_WD3AAKnOmm2VopEy0Vc_BOdmto5-1N53P-ZAAJMGgACPL-5VRbdmmqlskYeOgQ"
 SKIN_FILE_ID = "BQACAgUAAyEFAATC_WD3AAL-1GoN5muA9aiW2x_LO66UyEst2iRMAAKIKAACaEVoVE_rwa0hrB_7OwQ"
 
+INJECTOR_CONFIG_URL = "https://pastehub-dwp9.onrender.com/raw/zP82gpe8"
+
+async def get_injector_config():
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(INJECTOR_CONFIG_URL) as response:
+
+                if response.status != 200:
+                    return None, None
+
+                text = await response.text()
+
+        lines = text.strip().splitlines()
+
+        file_id = None
+        caption_start = 0
+
+        for i, line in enumerate(lines):
+            if line.startswith("INJECTOR_FILE_ID"):
+                file_id = line.split("=", 1)[1].strip().strip('"').strip("'")
+                caption_start = i + 1
+                break
+
+        if not file_id:
+            return None, None
+
+        caption = "\n".join(lines[caption_start:]).strip()
+
+        return file_id, caption
+
+    except Exception as e:
+        print(f"Injector config error: {e}")
+        return None, None
+        
 BOT_ACTIVE = True  # Default na naka-ON ang bot
 
 # ===== WEBKEEP ALIVE =====
@@ -438,22 +471,23 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # 7. CODM INJECTOR
     if re.search(r"\bcodm\s?(injector|inj)\b", text_lower):
         try:
+            file_id, caption = await get_injector_config()
+
+            if not file_id:
+                await msg.reply_text("❌ Injector configuration unavailable.")
+                return
+
             await msg.reply_document(
-                document=INJECTOR_FILE_ID,
-                caption=(
-                    "🚀 **Codm Injector – New Update v2.0**\n\n"
-                    "All core features are included in this version:\n\n"
-                    "✔ Version 1.6.56\n"
-                    "✔ Auto On Bypass\n"
-                    "✔ Key Generator Access\n"
-                    "✔ Added More Skin\n"
-                    "Enjoy New Update🔥"
-                ),
+                document=file_id,
+                caption=caption,
                 parse_mode="Markdown"
             )
+
             return
+
         except Exception as e:
             print(f"Error Injector: {e}")
+            return
             
        #KAZE SKIN
     if re.search(r"\bskin\s?(script|inj)\b", text_lower):
