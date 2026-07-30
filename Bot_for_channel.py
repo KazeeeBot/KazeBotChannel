@@ -64,7 +64,7 @@ async def get_injector_config():
         print(f"Injector config error: {e}")
         return None, None
 
-CODM_SCRIPT_CONFIG_URL = "CODM_SCRIPT_CONFIG_URL = "https://pastehub-dwp9.onrender.com/raw/ovg64IRT"
+CODM_SCRIPT_CONFIG_URL = "https://pastehub-dwp9.onrender.com/raw/ovg64IRT"
 
 async def get_script_config():
     try:
