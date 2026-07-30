@@ -63,6 +63,40 @@ async def get_injector_config():
     except Exception as e:
         print(f"Injector config error: {e}")
         return None, None
+
+CODM_SCRIPT_CONFIG_URL = "CODM_SCRIPT_CONFIG_URL = "https://pastehub-dwp9.onrender.com/raw/ovg64IRT"
+
+async def get_script_config():
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(CODM_SCRIPT_CONFIG_URL) as response:
+
+                if response.status != 200:
+                    return None, None
+
+                text = await response.text()
+
+        lines = text.strip().splitlines()
+
+        file_id = None
+        caption_start = 0
+
+        for i, line in enumerate(lines):
+            if line.startswith("CODM_SCRIPT_FILE_ID"):
+                file_id = line.split("=", 1)[1].strip().strip('"').strip("'")
+                caption_start = i + 1
+                break
+
+        if not file_id:
+            return None, None
+
+        caption = "\n".join(lines[caption_start:]).strip()
+
+        return file_id, caption
+
+    except Exception as e:
+        print(f"Script config error: {e}")
+        return None, None
         
 BOT_ACTIVE = True  # Default na naka-ON ang bot
 
@@ -454,20 +488,25 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     # 6. CODM SCRIPT
     if re.search(r"\bcodm\s?script\b", text_lower):
         try:
+            file_id, caption = await get_script_config()
+
+            if not file_id:
+                await msg.reply_text(
+                    "❌ CODM Script configuration unavailable."
+                )
+                return
+
             await msg.reply_document(
-                document=SCRIPT_FILE_ID,
-                caption=(
-                    "🔥 **Codm Premium Script – New Update v1.0**\n\n"
-                    "✔ Version 1.6.56\n"
-                    "Exclusive script developed by **@KAZEHAYAMODZ**.\n"
-                    "Optimized for better performance and stability.\n\n"
-                    "✔ Make sure you are using the latest injector version."
-                ),
+                document=file_id,
+                caption=caption,
                 parse_mode="Markdown"
             )
+
             return
+
         except Exception as e:
             print(f"Error Script: {e}")
+            return
 
     # 7. CODM INJECTOR
     if re.search(r"\bcodm\s?(injector|inj)\b", text_lower):
