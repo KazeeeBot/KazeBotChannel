@@ -966,7 +966,7 @@ async def Getfreekey(update: Update, context: ContextTypes.DEFAULT_TYPE):
     from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
     # RAW Pastebin URL
-    PASTEBIN_URL = "https://pastebin.com/raw/MQDyuA8W"
+    PASTEBIN_URL = "https://pastehub-dwp9.onrender.com/raw/mkxgLy-A"
 
     try:
         # Request sa Pastebin
