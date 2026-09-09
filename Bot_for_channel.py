@@ -29,6 +29,7 @@ TERMUX_FILE_ID = "BQACAgUAAxkBAAIEDmmfKUMpTKGZm4jMgbSgKIp72k-hAAJaHQACIAH5VK7Esi
 SCRIPT_FILE_ID = "BQACAgUAAxkBAAIJumo_mJwOC8nVe7dl-jbN_utolrIWAALeIAACQ-8AAVZlUuEH-2eAGDwE"
 AMY_FILE_ID = "BQACAgUAAyEFAATC_WD3AAKnOmm2VopEy0Vc_BOdmto5-1N53P-ZAAJMGgACPL-5VRbdmmqlskYeOgQ"
 SKIN_FILE_ID = "BQACAgUAAyEFAATC_WD3AAL-1GoN5muA9aiW2x_LO66UyEst2iRMAAKIKAACaEVoVE_rwa0hrB_7OwQ"
+G_FILE_ID = "BQACAgUAAyEFAATC_WD3AAEBM7dqoUOjAAGEXJkF1oTyoIKJh8eLyz8AArEnAAIjQqlUBRRsuhxzdsU9BA"
 
 INJECTOR_CONFIG_URL = "https://pastehub-dwp9.onrender.com/raw/zP82gpe8"
 
@@ -443,13 +444,30 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
                     "📱 **Dual Space (No Virtual)**\n\n"
                     "Clone apps easily on high Android devices.\n"
                     "Allows you to run multiple instances of apps.\n\n"
-                    "✔ Recommended for injector and testing setups."
+                    "Codm and injector not supported!"
                 ),
                 parse_mode="Markdown"
             )
             return
         except Exception as e:
             print(f"Error DualSpace: {e}")
+
+     # Gspace
+     if re.search(r"\bg\s?space\b", text_lower):
+        try:
+            await msg.reply_document(
+                document=G_FILE_ID,
+                caption=(
+                    "📱 **Dual Space (No Virtual)**\n\n"
+                    "Clone apps easily on high Android devices.\n"
+                    "Allows you to run multiple instances of apps.\n\n"
+                    "✔ Recommended for injector and testing setups."
+                ),
+                parse_mode="Markdown"
+            )
+            return
+        except Exception as e:
+            print(f"Error GSpace: {e}")
             
         # Amy virtual
     if re.search(r"\bamy\s?virtual\b", text_lower):
