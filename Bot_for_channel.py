@@ -458,7 +458,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await msg.reply_document(
                 document=G_FILE_ID,
                 caption=(
-                    "📱 **Dual Space (No Virtual)**\n\n"
+                    "📱 **Gspace (No Virtual)**\n\n"
                     "Clone apps easily on high Android devices.\n"
                     "Allows you to run multiple instances of apps.\n\n"
                     "✔ Recommended for injector and testing setups."
@@ -467,7 +467,7 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
             )
             return
         except Exception as e:
-            print(f"Error GSpace: {e}")
+            print(f"Error Gspace: {e}")
             
         # Amy virtual
     if re.search(r"\bamy\s?virtual\b", text_lower):
