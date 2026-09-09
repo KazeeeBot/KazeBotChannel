@@ -879,7 +879,8 @@ async def filters_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         " - `codm script`\n"
         " - `getfreekey`\n"
         " - `codm injector`\n"
-        " - `skin script`\n\n"
+        " - `skin script`\n"
+        " - `Gspace`\n\n"
         "💡 *Tip: Tap the name to copy, then paste and send to get the file!*"
     )
     
