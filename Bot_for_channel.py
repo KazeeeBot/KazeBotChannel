@@ -452,8 +452,8 @@ async def handle_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
         except Exception as e:
             print(f"Error DualSpace: {e}")
 
-     # Gspace
-     if re.search(r"\bg\s?space\b", text_lower):
+# Gspace
+    if re.search(r"\bg\s?space\b", text_lower):
         try:
             await msg.reply_document(
                 document=G_FILE_ID,
